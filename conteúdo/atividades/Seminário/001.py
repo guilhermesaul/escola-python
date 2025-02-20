@@ -1,27 +1,74 @@
-quantidade_alunos = int(input("Digite a quantidade de alunos: "))
-alunos = []
+faxinas = []
+#Menu para faxineiras
 while True:
-    print("*"*45)
-    print("CADASTRO DE ALUNOS")
-    print("*"*45)
-    print("0. Sair")
-    print("1. Adicionar aluno (nome, idade, gênero e média)")
-    print("2. Remover aluno")
-    print("3. Listar alunos")
-    print("4. Ver média dos alunos")
-    print("5. Buscar aluno")
-    print("6. Quantidade de alunos reprovados (média 60)")
-    print("*"*45)
-    opcao = int(input("Digite o número correspondente à uma opção: "))
+    print("*"*50)
+    print("0. Encerrar programa")
+    print("1. Adicionar valor da faxina")
+    print("2. Remover valor da faxina")
+    print("3. Ver valores das faxina")
+    print("4. Total obtido (em R$)")
+    print("5. Excluir todas as faxinas")
+    print("6. Maior preço obtido na faxina")
+    print("7. Menor preço obtido na faxina")
+    print("8. Média (em R$) das faxinas")
+    print("9. Quantidade total de faxinas")
+    print("*"*50)
+    opcao = int(input("Digite uma opção correspondente acima: "))
+
+    #Encerrar programa
     if opcao == 0:
         print("Encerrando programa...")
         break
+
+    #Adicionar valor na lista
     elif opcao == 1:
-        for l in range(quantidade_alunos):
-            nome = str(input("Digite o nome do aluno: "))
-            idade = str(input("Digite a idade do aluno: "))
-            genero = str(input("Digite o gênero do aluno: "))
-            media = str(input("Digite a média do aluno: "))
-            alunos.append([nome, idade, genero, media])
+        faxinas.append(float(input("Digite o valor obtido na faxina (em R$): ")))
+
+    #Remover valor na lista
     elif opcao == 2:
-        remove
+        remover = float(input("Digite o valor que deseja remover (em R$): "))
+        
+        #Verificar se valor está na lista
+        if remover in faxinas:
+            faxinas.remove(remover)
+            print("Valor removido com sucesso")
+        else:
+            print("Não existe esse valor na lista")
+
+    #Listar lista
+    elif opcao == 3:
+        y = 1
+        for x in faxinas:
+            print(f"Na {y}° faxina você obteve: {x:.2f} R$")
+            y += 1
+            #Lista a lista, armazena um valor por vez na var x, e na var y vê o total de itens na lista e remove 1 numero a cada repetição
+
+    #Exibe a soma de todas as faxinas
+    elif opcao == 4:
+        print(f"O total obtido foi: {sum(faxinas):.2f} R$")
+
+    #Remove todos os valores da lista
+    elif opcao == 5:
+        faxinas.clear()
+        print("Valores exluidos com sucesso")
+        print(faxinas)
+
+    #Maior preço de todos nas faxinas
+    elif opcao == 6:
+        print(f"O maior preço obtido em uma faxina foi: {max(faxinas)} R$")
+
+    #Menor preço de todos nas faxinas
+    elif opcao == 7:
+        print(f"O menor preço obtido em uma faxina foi: {min(faxinas)} R$")
+
+    #Média em reais obtido nas faxinas
+    elif opcao == 8:
+        soma = sum(faxinas)
+        quantidade = len(faxinas)
+        media = soma/quantidade
+        print(f"A média de R$ obtida nas faxinas foi de: {media:.2f} R$")
+
+    #Total de faxinas
+    elif opcao == 9:
+        total = len(faxinas)
+        print(f"O total de faxinas foi de: {total}")

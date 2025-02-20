@@ -5,7 +5,7 @@ while True:
     print("0. Encerrar programa")
     print("1. Adicionar valor da faxina")
     print("2. Remover valor da faxina")
-    print("3. Ver valores das faxina")
+    print("3. Ver valores das faxinas")
     print("4. Total obtido (em R$)")
     print("5. Excluir todas as faxinas")
     print("6. Maior preço obtido na faxina")
@@ -50,8 +50,7 @@ while True:
     #Remove todos os valores da lista
     elif opcao == 5:
         faxinas.clear()
-        print("Valores exluidos com sucesso")
-        print(faxinas)
+        print("Valores excluídos com sucesso")
 
     #Maior preço de todos nas faxinas
     elif opcao == 6:

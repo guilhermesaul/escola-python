@@ -66,7 +66,6 @@ class KazuyaMishima(Personagem):
         super().__init__(nome, idade, sexo, ataque, defesa, vida)
         
     def bloquear_golpe(self):
-        super().bloquear_golpe()
         self.ataque *= 2
         return self.ataque
     

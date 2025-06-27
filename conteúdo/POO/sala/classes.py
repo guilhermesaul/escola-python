@@ -37,7 +37,7 @@ class Ryu(Lutador):
     def golpe(self):
         return self.__golpe
     
-    def golpe_especial():
+    def golpe_especial(self):
         return 30
     
 class ChunLi(Lutador):
@@ -49,7 +49,7 @@ class ChunLi(Lutador):
     def golpe(self):
         return self.__golpe
     
-    def golpe_especial():
+    def golpe_especial(self):
         return 35
     
 lutadores = [Ryu("Ryu", 100), ChunLi("Chun Li", 95)]
@@ -57,3 +57,5 @@ for lutador in lutadores:
     nome = lutador.nome
     golpe = lutador.golpe
     dano = lutador.golpe_especial
+r = Ryu("Ryu", 100)
+print(r.golpe, r.golpe_especial())  # Hadouken 30

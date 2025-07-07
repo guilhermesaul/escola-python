@@ -1,26 +1,27 @@
+import csv
 class Pedido:
     def __init__(
         self,
-        id_pedido: int,
-        protocolo_pedido: str,
-        esfera: str,
-        uf: str,
-        municipio: str,
-        orgao_destinatario: str,
-        situacao: str,
-        data_registro: str,
-        prazo_atendimento: str,
-        foi_prorrogado: str,
-        foi_reencaminhado: str,
-        forma_resposta: str,
-        origem_solicitacao: str,
-        id_solicitante: int,
-        assunto_pedido: str,
-        subassunto_pedido: str,
-        tag: str,
-        data_resposta: str,
-        decisao: str,
-        especificacao_decisao: str
+        id_pedido:int,
+        protocolo_pedido:str,
+        esfera:str,
+        uf:str,
+        municipio:str,
+        orgao_destinatario:str,
+        situacao:str,
+        data_registro:str,
+        prazo_atendimento:str,
+        foi_prorrogado:str,
+        foi_reencaminhado:str,
+        forma_resposta:str,
+        origem_solicitacao:str,
+        id_solicitante:int,
+        assunto_pedido:str,
+        subassunto_pedido:str,
+        tag:str,
+        data_resposta:str,
+        decisao:str,   
+        especificacao_decisao:str
     ):
         self.__id_pedido = id_pedido
         self.__protocolo_pedido = protocolo_pedido
@@ -202,3 +203,48 @@ class Pedido:
     @especificacao_decisao.setter
     def especificacao_decisao(self, valor):
         self.__especificacao_decisao = valor
+
+def carregar_pedidos_do_arquivo(caminho_arquivo):
+    pedidos = []
+    with open(caminho_arquivo, newline='', encoding='utf-16') as csvfile:
+        leitor = csv.DictReader(csvfile, delimiter=';')
+        for linha in leitor:
+            pedido = Pedido(
+                id_pedido=int(linha['IdPedido']),
+                protocolo_pedido=linha['ProtocoloPedido'],
+                esfera=linha['Esfera'],
+                uf=linha['UF'],
+                municipio=linha['Municipio'],
+                orgao_destinatario=linha['OrgaoDestinatario'],
+                situacao=linha['Situacao'],
+                data_registro=linha['DataRegistro'],
+                prazo_atendimento=linha['PrazoAtendimento'],
+                foi_prorrogado=linha['FoiProrrogado'],
+                foi_reencaminhado=linha['FoiReencaminhado'],
+                forma_resposta=linha['FormaResposta'],
+                origem_solicitacao=linha['OrigemSolicitacao'],
+                id_solicitante=int(linha['IdSolicitante']),
+                assunto_pedido=linha['AssuntoPedido'],
+                subassunto_pedido=linha['SubAssuntoPedido'],
+                tag=linha['Tag'],
+                data_resposta=linha['DataResposta'],
+                decisao=linha['Decisao'],
+                especificacao_decisao=linha['EspecificacaoDecisao']
+            )
+            pedidos.append(pedido)
+    return pedidos
+
+def buscar_pedido_por_id(pedidos, id_pedido):
+    for pedido in pedidos:
+        if pedido.id_pedido == id_pedido:
+            return pedido
+    return None
+
+if __name__ == "__main__":
+    pedidos = carregar_pedidos_do_arquivo("20250702_Pedidos_csv_2025.csv")
+    id_busca = int(input("Digite o ID do pedido para buscar: "))
+    pedido_encontrado = buscar_pedido_por_id(pedidos, id_busca)
+    if pedido_encontrado:
+        print(f"Pedido encontrado: Protocolo {pedido_encontrado.protocolo_pedido}, Situação {pedido_encontrado.situacao}")
+    else:
+        print("Pedido não encontrado.")
